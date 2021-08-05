@@ -18,7 +18,7 @@ function App() {
         <Route path="*" component={ NotFound } />
       </Switch>
       <div>Movie Card Library CRUD</div>
-    </Router> 
+    </Router>
   );
 }
 
