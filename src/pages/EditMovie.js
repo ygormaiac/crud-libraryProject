@@ -22,26 +22,26 @@ class EditMovie extends Component {
     this.getMovie(id);
   }
 
-  getMovie = (id) => {
-    this.setState({ status: 'loading' },
-      async () => {
-        const movie = await movieAPI.getMovie(id);
-        this.setState({ status: '', movie, })
-      })
-  }
-
   handleSubmit(updatedMovie) {
     this.setState({ status: 'loading' },
       async () => {
         const movie = await movieAPI.updateMovie(updatedMovie);
-        this.setState({ status: '', movie, shouldRedirect: true, });
-      })
+        this.setState({ status: '', movie, shouldRedirect: true });
+      });
+  }
+
+  getMovie = (id) => {
+    this.setState({ status: 'loading' },
+      async () => {
+        const movie = await movieAPI.getMovie(id);
+        this.setState({ status: '', movie });
+      });
   }
 
   render() {
     const { status, shouldRedirect, movie } = this.state;
     if (shouldRedirect) {
-      return <Redirect to="/" />
+      return <Redirect to="/" />;
     }
 
     if (status === 'loading') {

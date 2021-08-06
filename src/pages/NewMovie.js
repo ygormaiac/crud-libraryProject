@@ -15,7 +15,7 @@ class NewMovie extends Component {
 
   async handleSubmit(newMovie) {
     await movieAPI.createMovie(newMovie);
-    this.setState({ shouldRedirect: true, })
+    this.setState({ shouldRedirect: true });
   }
 
   render() {
@@ -23,7 +23,7 @@ class NewMovie extends Component {
     const movie = movieAPI.getMovies()[0];
 
     if (shouldRedirect) {
-      return <Redirect to="/"/>
+      return <Redirect to="/" />;
     }
     return (
       <div data-testid="new-movie">
