@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { MovieForm, Loading } from '../components';
 import * as movieAPI from '../services/movieAPI';
 
+// Feito com Gabriel Biasoli
 class EditMovie extends Component {
   constructor(props) {
     super(props);
@@ -21,30 +22,26 @@ class EditMovie extends Component {
     this.getMovie(id);
   }
 
-  handleSubmit(updatedMovie) {
-    this.setState({ status: 'loading' },
-      async () => {
-        const movie = await movieAPI.updateMovie(updatedMovie);
-        this.setState({
-          status: '',
-          movie,
-          shouldRedirect: true,
-        });
-      });
-  }
-
   getMovie = (id) => {
     this.setState({ status: 'loading' },
       async () => {
         const movie = await movieAPI.getMovie(id);
-        this.setState({ movie, status: '' });
-      });
+        this.setState({ status: '', movie, })
+      })
+  }
+
+  handleSubmit(updatedMovie) {
+    this.setState({ status: 'loading' },
+      async () => {
+        const movie = await movieAPI.updateMovie(updatedMovie);
+        this.setState({ status: '', movie, shouldRedirect: true, });
+      })
   }
 
   render() {
     const { status, shouldRedirect, movie } = this.state;
     if (shouldRedirect) {
-      return <Redirect to="/" />;
+      return <Redirect to="/" />
     }
 
     if (status === 'loading') {
