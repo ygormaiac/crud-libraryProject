@@ -35,16 +35,26 @@ class MovieDetails extends Component {
     if (loading) return <Loading />;
 
     return (
-      <div data-testid="movie-details">
-        <img alt="Movie Cover" src={ `../${imagePath}` } />
-        <p>{ `Title: ${title}` }</p>
-        <p>{ `Subtitle: ${subtitle}` }</p>
-        <p>{ `Storyline: ${storyline}` }</p>
-        <p>{ `Genre: ${genre}` }</p>
-        <p>{ `Rating: ${rating}` }</p>
-        <Link to="/">VOLTAR</Link>
-        <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
-        <Link to="/" onClick={ this.deleteMovie }>DELETAR</Link>
+      <div className="movie">
+      <div data-testid="movie-details" className="movie-details">
+        <img alt="Movie Cover" src={ `../${imagePath}` } className="img-details"/>
+        <p className="title-details">{title}</p>
+        {/* <p>{subtitle}</p> */}
+        <p className="storyline-details">{storyline}</p>
+        <p className="genre-details">{genre}</p>
+        <p className="rating">{rating}</p>
+        <div className="buttons-container">
+          <Link to="/">
+            <button className="buttons-details">VOLTAR</button>
+          </Link>
+          <Link to={ `/movies/${id}/edit` }>
+            <button className="buttons-details">EDITAR</button>
+          </Link>
+          <Link to="/" onClick={ this.deleteMovie }>
+            <button className="buttons-details">DELETAR</button>
+          </Link>
+        </div>
+      </div>
       </div>
     );
   }
